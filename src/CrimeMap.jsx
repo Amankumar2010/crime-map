@@ -215,7 +215,7 @@ export default function CrimeMap(){
                   <rect x={x} y={y} width={TILE} height={TILE} rx={6} fill={fill} stroke={isHovered?"#e8e6e1":hasDistricts?"rgba(230,126,34,0.3)":"rgba(255,255,255,0.06)"} strokeWidth={isHovered?2:hasDistricts?1.5:1} style={{transition:"all 0.2s ease",filter:isHovered?"brightness(1.3)":"none"}}/>
                   <text x={x+TILE/2} y={y+TILE/2-4} textAnchor="middle" fill={isHovered?"#fff":"rgba(255,255,255,0.75)"} fontSize={12} fontWeight={600} fontFamily="'Space Mono',monospace">{code}</text>
                   <text x={x+TILE/2} y={y+TILE/2+12} textAnchor="middle" fill={isHovered?"#fff":"rgba(255,255,255,0.4)"} fontSize={9} fontFamily="'Space Mono',monospace">{showRate?val.toFixed(1):formatNum(val)}</text>
-                  {hasDistricts&&<text x={x+TILE-6} y={y+12} textAnchor="end" fill="#e67e22" fontSize={8}>▸</text>}
+                  {hasDistricts&&<><rect x={x+TILE-18} y={y+2} width={16} height={12} rx={3} fill="rgba(230,126,34,0.2)"/><text x={x+TILE-10} y={y+10.5} textAnchor="middle" fill="#e67e22" fontSize={9} fontWeight={700} fontFamily="'Space Mono',monospace">↓</text></>}
                 </g>);
               })}
             </svg>
@@ -226,7 +226,7 @@ export default function CrimeMap(){
             </div>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:4}}>
               <span style={{fontSize:10,color:"#3a3a45",fontFamily:"'Space Mono',monospace"}}>{showRate?"crimes per lakh population":"total reported cases"}</span>
-              <span style={{fontSize:10,color:"#e67e22",fontFamily:"'Space Mono',monospace"}}>▸ = drill-down available</span>
+              <span style={{fontSize:10,color:"#e67e22",fontFamily:"'Space Mono',monospace"}}>↓ = click to drill down</span>
             </div>
           </div>
         </div>
