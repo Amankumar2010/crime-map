@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crime-map
+  namespace: crime-map
+  labels:
+    app: crime-map
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crime-map
+  template:
+    metadata:
+      labels:
+        app: crime-map
+    spec:
+      containers:
+        - name: crime-map
+          # Option A: Local Zot registry (if ImagePullBackOff is resolved)
+          # image: localhost:5000/crime-map:latest
+          # Option B: GitHub Container Registry (recommended)
+          image: ghcr.io/amankumar2010/crime-map:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 10

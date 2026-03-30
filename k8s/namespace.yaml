@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crime-map
+  labels:
+    app.kubernetes.io/name: crime-map
+    app.kubernetes.io/managed-by: argocd

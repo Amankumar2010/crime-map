@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crime-map
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Amankumar2010/gitops-pi5.git
+    targetRevision: main
+    path: apps/crime-map
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crime-map
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
